@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuda e Suporte</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/OniBusca.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/suporte.css' %}">
+</head>
+<body>
+    <nav id="menu">
+        <a href="{% url 'home' %}" id="linkBack">
+        <span id="logo">
+            <img src="{% static 'img/OniBusca.svg' %}" alt="logo do site" id="logoImg">
+        <p><span class="green">Oni</span>Busca</p>
+    </a>
+    </span>
+    <ul>
+        <li id="linhas"><a href="linhas.html">Visualizar Linhas</a></li>
+        <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+    <span id="meuPerfil">
+        <li><a href="meuPerfil.html">Meu perfil</li>
+        <li><img src="images/user.png" alt="perfil"></a></li>
+        <!-- Ajustar a aplicação de login -->
+    </span>
+    </ul>
+</nav>
+<main id="main">
+    <h1><span class="green">Ajuda &</span> Suporte</h1>
+
+    <div id="texto">
+        <h1 class="green">CONTATE-NOS!</h1>
+        <p>Nós, da Equipe Orka, estamos dispostos a tirar quaisquer dúvidas ou resolver problemas relacionados ao  <span id="negrito"><span class="green">Oni</span>Busca</span> no seguinte email: <a href="mailto:orkashield@gmail.com">orkashield@gmail.com</a>
+        </p>
+    </div>
+</main>
+
+<footer id="footer">
+    <p>&copy; OrkaShield</p>
+</footer>
+
+</body>
+</html>
