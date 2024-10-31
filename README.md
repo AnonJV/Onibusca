@@ -72,8 +72,6 @@ Abaixo estão os fundadores do projeto:
 
 ![fundadores](https://github.com/AnonJV/Onibusca/blob/main/Images/Fundadores.png)
 
-<br>
-
 ### :checkered_flag: `Timeline`
 
 ![Alt](https://repobeats.axiom.co/api/embed/cd637f45a05f68200b0094d4694a5d7f4b00eaa2.svg "Repobeats analytics image")
