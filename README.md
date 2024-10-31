@@ -27,7 +27,7 @@ A concepção amadureceu conforme pesquisas foram levantadas de maneira que esta
 
 <br>
 
-## :card_file_box: Funções
+## :clipboard: Funções
 
 A aplicação surgiu de uma deficiência identificada no setor de transporte após ser verificado que grande parte das pessoas não sabia a localização exata dos pontos de parada do veículo, não tinha a informação dos horários, desconheciam as linhas resultando na desinformação do destino e não tinha consciência se haviam perdido o veículo. Por conta dessas problemáticas, foi proposto um aplicativo com as seguintes funções: 
 
@@ -42,4 +42,38 @@ A aplicação surgiu de uma deficiência identificada no setor de transporte ap�
 
 ## :dart: Objetivo
 
-O objetivo do Onibusca é que todos os cidadãos brasileiros tenham acesso a tecnologia para rastreio dos veículos do transporte público solucionando os problemas relacionadas a desinformação e perca dos veículos. Pretende-se criar um cadastro e parceria com empresas e prefeituras das cidades que seriam responsáveis por fornecer os dados necessários para a aplicação.
+O objetivo do Onibusca é que todos os cidadãos brasileiros tenham acesso a tecnologia para rastreio dos veículos do transporte público solucionando os problemas relacionadas a desinformação e perca dos veículos. Pretende-se criar um cadastro e parceria com empresas e prefeituras das cidades que seriam responsáveis por fornecer os dados necessários para a aplicação. Esperamos conquistar e convencer várias instituições a adotar o aplicativo. Cidades interconectadas que crescem implementando a inovação tecnológica são mais eficientes e resulta em grandes benefícios para a cidade e aprovação por parte da população.
+
+<br>
+
+## :file_folder: Organização
+
+Afim de obter um programa organizado, o trabalho fora dividido em diretórios respectivos a sua função dentro do projeto como um todo. Por exemplo, toda a interface web e os arquivos necessários para seu funcionamento estão no diretório `Web`. Todos os arquivos relacionados ao desenvolvimento mobile se localizam no diretório `Android/IOS`. A API e seus referentes inventários estão no diretório `API`. Os artigos, no diretório `Artigo` e as imagens e qualquer arquivo de estilização se situam no diretório `Images`. 
+
+Internamente, o projeto fora feito utilizando diversas linguagens e frameworks. Cada integrante ficou com alguma parte para focar na produção, parte que era confortável para os mesmos. Claro que todos atuaram em todas as partes auxiliando um ao outro, como uma verdadeira equipe, mas a distribuição contribiu para dar espaço para que cada um conseguisse trabalhar tranquilamente. Abaixo estão as tecnologias usadas, o integrante responsável e a área: 
+
+Área | Tecnologia | Integrante
+:---:|:----------:|:---------:
+Front-end & Mobile | HTML5, CSS, JavaScript e React <br><br> <img align="center" alt="HTML5" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"/> <img align="center" alt="CSS3" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"/> <img align="center" alt="JS" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"/> <img align="center" alt="REACT" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"/> | Rafael
+Back-end | Django 5.1.2, Python 3.12+ e Node.js <br><br>  <img align="center" alt="NODE" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"/> <img align="center" alt="Python" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"/> <img align="center" alt="NODE" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"/> | Jean & Thales
+API | Ruby 3.3.5 <br><br> <img align="center" alt="Ruby" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg"/> | Lucão
+Banco de Dados | MySQL <br><br> <img align="center" alt="MySQL" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"/> | Thales
+Outros | Google Docs, Canva, Github e Figma <br><br> <img align="center" alt="Google" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg"/> <img align="center" alt="canva" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg"/> <img align="center" alt="github" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"/> <img align="center" alt="figma" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"/> | Thales, Gustavo & Rafael
+
+<br>
+
+## :seedling: `Contribuidores`
+
+Entramos em uma parte muito importante do projeto: **as contribuições**. O software existe para atender a população e a ajudar o país a ser um lugar melhor. Dito isso, convidamos a todos para estudar, atualizar e a compartilhar o projeto, sempre inovando e tornando-o melhor. Vejam como um projeto humanitário, o utilizem para ajudar mais pessoas ou como teste de conhecimento quando não há nada para fazer, isso já ajuda. 
+
+É de extrema importância que todos que visualizarem esse projeto, compartilhem e façam chegar as empresas e prefeituras de sua cidade. Além disso, cobrem o governo do município pois é um projeto para o povo e o custo é apenas a implementação, uma vez que nós desenvolvedores estaremos responsáveis pela manutenção. Ajudem o Brasil e seu povo! 
+
+Abaixo estão os fundadores do projeto: 
+
+![fundadores]()
+
+<br>
+
+### :checkered_flag: `Timeline`
+
+![Alt](https://repobeats.axiom.co/api/embed/cd637f45a05f68200b0094d4694a5d7f4b00eaa2.svg "Repobeats analytics image")
