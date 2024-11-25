@@ -79,6 +79,12 @@ rescue JSON::ParserError
   []
 end
 
+get '/rota_completa' do
+  content_type :json
+  rota_completa = carrega_rota_completa
+  { rota_completa: rota_completa }.to_json
+end
+
 def ajusta_rota_no_mapa(historico_coordenadas)
   coordenadas_validas = historico_coordenadas
                           .select { |entry| entry["coordenada"].is_a?(Array) && entry["coordenada"].length == 2 }
