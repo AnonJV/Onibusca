@@ -5,6 +5,10 @@
     <title>Monitoramento do veículo</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
         #mapa_da_rota { height: 600px; }
         .botao {
             position: absolute;
@@ -46,7 +50,7 @@
 
     <div id="legenda">
         <div>
-            <span class="box" style="background-color: #003626;"></span> Percurso Percorrido
+            <span class="box" style="background-color: #71a872;"></span> Percurso Percorrido
         </div>
         <div>
             <span class="box" id="cor-segmento"></span> Rota prevista
@@ -60,6 +64,11 @@
     <button id="botaoSatelite" class="botao">
         <img src="https://i.postimg.cc/bwpDKdQk/satelite.png" alt="Satélite" width="40" height="40">
     </button>
+
+    <button id="botaoRotaCompleta" class="botao" style="bottom: 10px; right: 130px;">
+    <img src="https://i.postimg.cc/tTCrxftM/1604243.png" alt="Rota Completa" width="40" height="40">
+</button>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -184,7 +193,7 @@
                     }
 
                     linha_percurso_trajeto_percorrido = L.polyline(percursoAjustado, {
-                        color: '#003626',
+                        color: '#71a875',
                         weight: 9,
                     }).addTo(mapa);
 
@@ -225,6 +234,34 @@
             const corSegmento = isSatellite ? '#ffffff' : '#3e5752';
             document.getElementById('cor-segmento').style.backgroundColor = corSegmento;
         }
+        let linha_rota_completa = null; 
+
+        document.getElementById('botaoRotaCompleta').onclick = function () {
+            if (linha_rota_completa) {
+
+                mapa.removeLayer(linha_rota_completa);
+                linha_rota_completa = null; 
+            } else {
+                fetch('/rota_completa')
+                    .then(response => response.json())
+                    .then(dados => {
+                        const rotaCompleta = dados.rota_completa;
+
+                        if (!rotaCompleta || rotaCompleta.length === 0) {
+                            alert('Rota completa não disponível.');
+                            return;
+                        }
+
+                        linha_rota_completa = L.polyline(rotaCompleta, {
+                            color: '#003626',
+                            weight: 6
+                        }).addTo(mapa);
+
+                        mapa.fitBounds(linha_rota_completa.getBounds());
+                    })
+                    .catch(erro => alert('Erro ao carregar a rota completa.'));
+            }
+        };
 
         atualizaMapa();
         setInterval(() => {
