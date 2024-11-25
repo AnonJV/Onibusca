@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formLinhas.css">
+    <title>Cadastrar Linha</title>
+</head>
+
+<body>
+    <nav id="menu">
+        <span id="logo">
+            <img src="{% static 'img/logo.png' %}" alt="logo do site">
+            <p><span class="green">Oni</span>Busca</p>
+        </span>
+        <ul>
+            <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="meuPerfil.html">Meu perfil</a></li>
+            <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+            {% endif %}
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        <div id="img">
+            <img src="include_linemap.svg" alt="onibus">
+        </div>
+        <div id="form-div">
+            <form action="">
+                <span>
+                    <label for="linha">Linha</label>
+                    <input type="text" name="linha" id="linha" required>
+                </span>
+                <span>
+                    <label for="horaInicial">Início</label>
+                    <input type="time" name="horaInicial" id="horaInicial" required>
+                </span>
+                <span>
+                    <label for="horaTermino">Término</label>
+                    <input type="time" name="horaTermino" id="horaInicial" required>
+                </span>
+                <input type="submit" value="SALVAR" id="save">
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

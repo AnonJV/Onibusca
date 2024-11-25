@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem somos?</title>
+    <link rel="stylesheet" href="css/sobreLinha.css">
+    <link rel="stylesheet" href="css/sobreLinhaMedia.css">
+    <link rel="shortcut icon" href="images/OniBusca.svg" type="image/x-icon">
+</head>
+
+<body>
+    <nav id="menu">
+        <a href="index.html" id="linkBack">
+            <span id="logo">
+                <img src="images/logo.png" alt="logo do site" id="logoImg">
+                <p><span class="green">Oni</span>Busca</p>
+        </a>
+        </span>
+        <ul>
+            <li id="linhas"><a href="linhas.html">Visualizar Linhas</a></li>
+            <li><a href="suporte.html">Ajuda</a></li>
+            <span id="meuPerfil">
+                <li><a href="meuPerfil.html">Meu perfil</li>
+                <li><img src="images/user.png" alt="perfil"></a></li>
+            </span>
+        </ul>
+    </nav>
+    <main id="main">
+
+        <div id="left">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235203.81500692177!2d-43.58841988251077!3d-22.9111720903467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bde559108a05b%3A0x50dc426c672fd24e!2sRio+de+Janeiro%2C+RJ!5e0!3m2!1spt-BR!2sbr!4v1476880758681"
+                width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+            <progress id="linhaProgress" value="65" max="100"></progress>
+        </div>
+
+        <div id="rigth">
+            <div id="dadosLinha">
+                <div id="dados">
+                    <h1>Dados do veículo</h1>
+                    <span id="dados">
+                        <p>Número: .......</p>
+                        <p>Motorista: .......</p>
+                        <p>Placa: .......</p>
+                    </span>
+                </div>
+                <div id="coment">
+                    <input type="text" name="comentario" id="inputComentario" placeholder="Comentar...">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; OrkaShield</p>
+    </footer>
+
+</body>
+
+</html>

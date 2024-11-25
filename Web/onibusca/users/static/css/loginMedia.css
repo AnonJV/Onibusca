@@ -1,0 +1,147 @@
+@media (max-width: 480px) {
+  main {
+    height: 100vh;
+  }
+  body {
+    grid-template-rows: 1fr 9fr;
+    overflow-y: scroll;
+    overflow: hidden;
+    height: 100vh;
+  }
+  img[src="images/ponto.png"],
+  img[src="images/blob2.png"],
+  #left,
+  #left #onibus {
+    display: none;
+  }
+  #logo {
+    grid-row: 1/2;
+    margin-bottom: 2rem;
+  }
+  #logo img {
+    width: 100px;
+    height: 60px;
+  }
+  #logo p {
+    font-size: 2.5rem;
+  }
+  #main {
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  #form {
+    grid-column: 1/2;
+    padding: 2rem 3rem 1rem 3rem;
+    width: 90vw;
+  }
+  #form h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 0 0 4rem 0;
+  }
+  #form input {
+    width: 100%;
+    padding: 15px;
+  }
+  #canto {
+    left: -4rem;
+  }
+  #form label {
+    width: 100%;
+    text-align: start;
+    font-weight: 400;
+    font-size: 1.8rem;
+  }
+  #form #btnCad {
+    width: 100%;
+    margin: 0.5rem;
+  }
+  #form #btnCad:hover {
+    width: 90%;
+    font-size: 1.6rem;
+  }
+  span {
+    width: 100%;
+    height: min-content;
+    text-align: center;
+  }
+  #question {
+    width: 110%;
+    padding: 2rem;
+  }
+  #mostraSenha {
+    display: inline-flex;
+    width: 143%;
+    padding: 0;
+  }
+  
+  #input-icon {
+    right: 10%;
+    top: .2rem;
+  }
+  
+  #mostrar {
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    height: min-content;
+    width: min-content;
+    position: relative;
+    left: -4rem;
+    top: 1.2rem;
+  }
+}
+#footer {
+  font-size: 1.6rem;
+  grid-row: 4;
+}
+
+
+@media (min-width: 480px) and (max-width: 800px) {
+  body {
+    display: grid;
+    flex-direction: column;
+    height: 100vh;
+  }
+  #main {
+    align-self: center;
+    justify-self: center;
+  }
+  #left {
+    display: none;
+  }
+  #footer {
+    position: absolute;
+    bottom: 0;
+    justify-self: center;
+  }
+
+  #mostraSenha {
+    display: inline-flex;
+    width: 158%;
+    padding: 0;
+  }
+  #eye {
+    width: 30px;
+    padding: 0;
+  }
+  #mostrar {
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    height: min-content;
+    width: min-content;
+    position: relative;
+    left: -5rem;
+    top: 1.2rem;
+  }
+}

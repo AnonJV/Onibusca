@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gotham-6');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    color: #151018;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    font-size: 1.8rem;
+}
+
+.green {
+    color: #3c554f;
+}
+
+#linkBack {
+    text-decoration: none;
+    color: #151018;
+}
+
+#menu {
+    grid-row: 1/2;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+}
+
+#menu ul {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin-right: 6rem;
+}
+#meuPerfil {
+    display: flex;
+    align-items: center;
+}
+
+#meuPerfil img {
+    width: 5rem;
+    margin-bottom: -5px;
+    margin-right: -2rem;
+}
+
+#meuPerfil img:hover {
+    width: 5.1rem;
+}
+
+#menu ul li {
+    padding-left: 4rem;
+}
+
+#menu ul li:nth-child(3) {
+    padding-left: 1rem;
+}
+
+#menu #logoImg {
+    width: 150px;
+    height: 110px;
+    margin-right: 10px;
+    justify-content: flex-start;
+}
+
+#menu li a {
+    text-decoration: none;
+    color: #151018;
+    transition: .3s;
+    align-self: flex-end;
+    font-family: 'Gotham';
+    vertical-align: -10px;
+    font-size: 2.4rem;
+}
+
+#menu li a:hover {
+    color: #000;
+    font-size: 2.6rem;
+    transition: .3s;
+}
+
+#menu #logo {
+    display: flex;
+    font-family: 'Gotham';
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#menu p {
+    margin: -40px;
+}
+
+#main {
+    grid-row: 2/3;
+    display: grid;
+    width: 99%;
+    padding: 0 3rem 0 3rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+#main #dadosLinha {
+    position: relative;
+    background-color: #3c554f;
+    grid-column: 2/3;
+    padding: 3rem;
+    color: #fff;
+    border-radius: 2.2rem;
+    font-family: 'Gotham';
+    width: 100%;
+    height: 80%;
+    margin-top: 4rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+#dadosLinha h1 {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    padding-bottom: 3rem;
+}
+
+#dados {
+    display: block;
+    margin-top: 2rem;
+    font-size: 3rem;
+}
+
+#dados p {
+    margin-bottom: 6rem;
+}
+
+#inputComentario {
+    position: relative;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    width: 60%;
+    bottom: 0;
+    border: none;
+    outline: none;
+    font-family: 'Poppins';
+    background-image: url("/images/comente.png");
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+    border-radius: 2.2rem;
+}
+
+#inputComentario::placeholder {
+    font-size: 2rem;
+    color: #000;
+    font-family: 'Gotham';
+}
+
+#left {
+    display: flex;
+    padding: 4rem;
+    margin-top: 6rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+#linhaProgress {
+    position: relative;
+    height: 6rem;
+    margin: 1rem 0;
+    width: 60%;
+    accent-color: #3c554f;
+}
+
+#dados {
+    grid-row: 1;
+}
+
+#coment {
+    grid-row: 2;
+    position: relative;
+    display: flex;
+    align-items: end;
+}
+
+#footer {
+    grid-row: 3;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    color: #151018;
+}

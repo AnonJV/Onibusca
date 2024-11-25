@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gotham-6');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    color: #151018;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.green {
+    color: #3c554f;
+}
+#logo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 2rem;
+    font-family: 'Gotham';
+    font-weight: bold;
+}
+#logo img {
+    width: 100px;
+    height: 70px;
+    justify-content: flex-start;
+}
+#logo p {
+    margin-left: -2rem;
+    font-weight: bold;
+}
+#linkBack {
+    text-decoration: none;
+    color: #151018;
+}
+#main {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+}
+#blob {
+    position: absolute;
+    grid-column: 1/2;
+    top: -2rem;
+    left: -30rem;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    margin-left: -4rem;
+}
+#left {
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#left #onibus {
+    position: relative;
+    width: 80%;
+    animation: mover 2.5s ease-out infinite;
+}
+
+#rigth {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#rigth #form {
+    height: max-content;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+#form {
+    width: 80%;
+    height: 60%;
+    align-self: center;
+    background-color: #E6E2E2;
+    border-radius: 3rem;
+    padding: 2rem 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    box-shadow: #3C3D3C 2px 5px 20px;
+    transition: .3s;
+}
+
+#form h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+#form:hover {
+    box-shadow: #3c554f 2px 5px 10px;
+    transition: .3s;
+}
+
+
+#form label {
+    color: #151018;
+    font-size: 1.8rem;
+    padding-bottom: .5rem;
+    font-family: 'Gotham';
+}
+
+#form input {
+    position: relative;
+    outline: none;
+    width: 80%;
+    border: none;
+    border-radius: 5px 10px 10px 5px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+#form input:focus {
+    outline: 2px solid #151018;
+}
+
+.container-input {
+    font-size: 1.8rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#inputPass {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    right: 12%;
+    top: 0.5rem;
+    cursor: pointer;
+}
+
+#inputs{
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#inputs input {
+    margin: 0 auto;
+}
+
+#form div > span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.container-input input {
+    margin: 0 auto;
+    display: flex;
+    font-size: 1.6rem;
+    border-radius: .8rem;
+    padding: .5rem;
+    width: 100%;
+    border: 2px solid #000;
+    outline: none;
+}
+
+
+.container-input label {
+    width: 80%;
+    margin: 1rem 0 0 0;
+}
+
+.container-input input:focus {
+    border: none;
+    transition: .2s;
+}
+
+#showPassword {
+    width: 3rem;
+}
+
+#form #btnCad {
+    outline: none;
+    border: none;
+    background-color: #3c554f;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 1.2rem 1rem;
+    border-radius: 2.2rem;
+    margin: 1.2rem auto;
+    align-self: center;
+    justify-self: center;
+    width: 40%;
+    transition: .3s;
+    box-shadow: #3C3D3C 4px 9px 5px;
+    font-weight: lighter;
+}
+#form #btnCad:hover {
+    transition: .3s;
+    box-shadow: #151018 2px 9px 5px;
+    width: 45%;
+}
+
+#form #btnCad a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#footer {
+    text-align: center;
+    color: #3C3D3C;
+}
+#trocarSenha {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+#question {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#question a{
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+}
+
+@keyframes mover {
+    0% {
+        left: 0;
+    }
+    25% {
+        left: 10px;
+    } 
+    50% {
+        left: 20;
+    }
+    75% {
+        left: 10px;
+    }
+    100% {
+        left: 0;
+    }
+}

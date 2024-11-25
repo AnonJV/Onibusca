@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    {% load static %}
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/OniBusca.svg' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/cadastroMedia.css' %}" />
+  </head>
+
+  <body>
+    <a href="{% url 'home' %}" id="linkBack">
+      <span id="logo">
+        <img src="{% static 'img/logo.png' %}" alt="logo do site" />
+        <p><span class="green">Oni</span>Busca</p>
+      </span>
+    </a>
+    <main id="main">
+      <div id="left">
+        <img src="{% static 'img/blob2.png' %}" alt="mancha cinza" id="blob" />
+        <img
+          src="{% static 'img/Bus Stop-pana.svg' %}"
+          alt="imagem de um ponto de ônibus"
+          id="ponto"
+        />
+      </div>
+      <div id="rigth">
+        <form action="{% url 'cadastro' %}" method="post" id="form">
+          {% csrf_token %}
+          <h1>CRIE SUA CONTA</h1>
+          <span id="canto">
+            <div class="step active">
+              <div id="passPlace">
+                <span class="formInput">
+                  <label for="nomeUser">Nome de usuário</label>
+                  <input
+                    type="text"
+                    name="nomeUser"
+                    id="nomeUser"
+                    placeholder="Qual seu nome?"
+                    maxlength="255"
+                    required
+                  />
+                </span>
+                <span class="formInput">
+                  <label for="sobreNome">Sobrenome</label>
+                  <input
+                    type="text"
+                    name="sobreNome"
+                    id="sobreNome"
+                    placeholder="Sobrenome"
+                    maxlength="255"
+                    required
+                  />
+                </span>
+              </div>
+              <span class="formInput">
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" name="nascimento" id="nascimento" required />
+              </span>
+              <span class="formInput">
+                <label for="email">E-mail</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="email@gmail.com"
+                  maxlength="255"
+                  required
+                />
+              </span>
+              <div id="passPlace">
+                <span class="formInput">
+                  <label for="senha">Senha</label>
+                  <input
+                    type="password"
+                    name="senha"
+                    id="senha"
+                    placeholder="Insira sua senha"
+                    minlength="8"
+                    required
+                  />
+                </span>
+                <span class="formInput">
+                  <label for="conSenha">Confirmar Senha</label>
+                  <input
+                    type="password"
+                    name="conSenha"
+                    id="conSenha"
+                    placeholder="Confirme sua senha"
+                    minlength="8"
+                    required
+                  />
+                </span>
+              </div>
+              <button type="button" class="nextStep" id="next1">Próximo</button>
+            </div>
+            <div class="step">
+              <span class="formInput">
+                <label for="cep">CEP</label>
+                <input
+                  type="text"
+                  name="cep"
+                  id="cep"
+                  placeholder="00000-000"
+                  maxlength="9"
+                  onkeyup="formatarCep(event); buscarEndereco(this.value)"
+                  required
+                />
+              </span>
+              <span class="formInput">
+                <label for="cidade">Cidade</label>
+                <input
+                  type="text"
+                  name="cidade"
+                  id="cidade"
+                  placeholder="Cidade"
+                  required
+                />
+              </span>
+              <span class="formInput">
+                <label for="uf">UF</label>
+                <input
+                  type="text"
+                  name="uf"
+                  id="uf"
+                  placeholder="Estado"
+                  required
+                />
+              </span>
+              <div class="buttonPlace">
+                <button type="button" onclick="backStep()" class="backStep">
+                  Voltar
+                </button>
+                <button type="button" class="nextStep" id="next2">
+                  Próximo
+                </button>
+              </div>
+            </div>
+            <div class="step">
+              <div id="termosBox">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
+                  assumenda distinctio vero repellendus tempora, incidunt ipsam
+                  necessitatibus consectetur a. Nihil sint illo veritatis minus
+                  perferendis accusamus odit sit iusto laboriosam.
+                </p>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Recusandae at veritatis nulla, illo velit adipisci nesciunt!
+                  Alias consequatur, officia quidem ex rem, modi impedit neque,
+                  cumque tenetur totam molestiae cum.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Officiis soluta, dicta similique delectus laborum officia
+                  tempora quidem quis! Dicta reprehenderit ipsa quia ad
+                  blanditiis! Totam, odio placeat! Harum, natus in.
+                </p>
+              </div>
+              <span class="formInput" id="termosUso">
+                <input type="checkbox" name="termos" id="termos" required />
+                <label for="termos"
+                  >Li e concordo com os
+                  <a
+                    href="https://youtu.be/rEtq9lnhsHc?si=XEFAEwZUDk8uEuS1"
+                    target="_blank"
+                    >termos de uso</a
+                  >.</label
+                >
+              </span>
+              <div class="buttonPlace">
+                <button type="button" onclick="backStep()" class="backStep">
+                  Voltar
+                </button>
+                <button type="submit" id="btnCad">CRIAR</button>
+              </div>
+            </div>
+          </span>
+
+          <!-- 
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                Ajustar para exibir em um pop-up ao invés de uma simples linha
+                -->
+
+          <!-- <span id="question">
+            <p>Já tem uma conta?</p>
+            <a href="{% url 'login' %}">Entre agora!</a>
+          </span> -->
+        </form>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <p>&copy; OrkaShield</p>
+    </footer>
+  </body>
+  <script>
+    // Formatar o CEP
+    function formatarCep(event) {
+      let input = event.target;
+      let valor = input.value.replace(/\D/g, "");
+      if (valor.length > 5) {
+        valor = valor.replace(/^(\d{5})(\d)/, "$1-$2");
+      }
+      input.value = valor;
+    }
+    // Controle do formulário
+    let currentStep = 0;
+    showStep(currentStep);
+
+    function showStep(step) {
+      const steps = document.querySelectorAll(".step");
+      steps.forEach((s, index) => {
+        s.classList.remove("active");
+        if (index == step) {
+          s.classList.add("active");
+        }
+      });
+      steps[step].classList.add("active");
+    }
+
+    function nextStep() {
+      console.log("Olá");
+    }
+
+    function backStep() {
+      if (currentStep <= 0) return;
+      currentStep--;
+      showStep(currentStep);
+    }
+
+    // Buscar dados do CEP
+    function buscarEndereco(cep) {
+      const cepNumerico = cep.replace(/\D/g, "");
+
+      if (cepNumerico.length === 8) {
+        const url = `https://viacep.com.br/ws/${cepNumerico}/json/`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            if (!data.erro) {
+              document.getElementById("uf").value = data.uf;
+              document.getElementById("cidade").value = data.localidade;
+            } else {
+              alert("CEP não encontrado.");
+            }
+          })
+          .catch((error) => console.error("Erro ao buscar o endereço:", error));
+      } else {
+        document.getElementById("uf").value = "";
+        document.getElementById("cidade").value = "";
+      }
+    }
+    document.getElementById("next1").addEventListener("click", function () {
+      if (validateStep(currentStep)) {
+        const steps = document.querySelectorAll(".step");
+        steps[currentStep].classList.remove("active");
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+
+    document.getElementById("next2").addEventListener("click", function () {
+      if (validateStep(currentStep)) {
+        const steps = document.querySelectorAll(".step");
+        steps[currentStep].classList.remove("active");
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+
+    function validateStep(step) {
+      const steps = document.querySelectorAll(".step");
+      const inputs = steps[step].querySelectorAll("input");
+      let isValid = true;
+
+      inputs.forEach((input) => {
+        if (input.value.trim() === "") {
+          isValid = false;
+          input.focus();
+          return false;
+        }
+      });
+
+      return isValid;
+    }
+
+    function showStep(step) {
+      const steps = document.querySelectorAll(".step");
+      steps.forEach((s, index) => {
+        s.classList.toggle("active", index === step);
+      });
+    }
+  </script>
+</html>

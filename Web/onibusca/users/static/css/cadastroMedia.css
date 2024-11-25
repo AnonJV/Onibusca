@@ -1,0 +1,103 @@
+@media (max-width: 480px) {
+    body {
+      grid-template-rows: 1fr 9fr;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+    img[src="images/ponto.png"], img[src="images/blob2.png"], #left, #left #ponto {
+        display: none;
+      }
+      #logo {
+        grid-row: 1/2;
+        margin-bottom: 2rem;
+      }
+      #logo img {
+        width: 100px;
+        height: 60px;
+      }
+      #logo p {
+        font-size: 2.5rem;
+      }
+      #main {
+        grid-row: 2/3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: .5rem;
+      }
+      #form {
+        grid-column: 1/2;
+        padding: 2rem 6rem 1rem 6rem;
+        width: 90vw;
+      }
+      #form h1 {
+        font-size: 2rem;
+      }
+      #form input {
+        width: 130%;
+      }
+      #canto {
+        left: -4rem;
+      }
+      #form label {
+        font-size: 1.8rem;
+      }
+      #form #btnCad {
+        width: 100%;
+        margin: .5rem;
+      }
+      #form #btnCad:hover {
+        width: 78%;
+        font-size: 1.6rem;
+      }
+      #question {
+        width: 110%;
+        padding: 2rem;
+      }
+      #eye {
+        width: 30px;
+        padding: 0;
+    }
+    
+    #mostraSenha {
+        display: inline-flex;
+        width: 143%;
+        padding: 0;
+    }
+    
+    #mostrar {
+        border: none;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
+        height: min-content;
+        width: min-content;
+        position: relative;
+        left: -4rem;
+        top: 1.2rem;
+    }
+}
+#footer {
+  font-size: 1.6rem;
+  grid-row: 4;
+}
+
+@media (max-width: 1200px) {
+  body {
+    display: grid;
+    flex-direction: column;
+    height: 100vh;
+  }
+  #main {
+    align-self: center;
+    justify-self: center;
+  }
+  #left {
+    display: none;
+  }
+  #footer {
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+  }
+}

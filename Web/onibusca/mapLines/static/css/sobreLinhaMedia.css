@@ -1,0 +1,153 @@
+@media (max-width: 480px) {
+
+    html {
+        height: 100vh;
+        width: 100vw;
+        overflow-y: auto;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 8fr 1fr;
+    }
+
+    #main {
+        padding: 0 4rem;
+    }
+
+    #meuPerfil img {
+        display: none;
+    }
+
+    #menu {
+        grid-row: 1/2;
+        margin: 5px -3rem;
+        padding: 0;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #menu li a {
+        font-size: 1.6rem;
+        text-align: center;
+        vertical-align: -2px;
+    }
+
+    #menu li a:hover {
+        color: #000;
+        font-size: 1.7rem;
+    }
+
+    #menu ul {
+        margin-right: 4rem;
+    }
+
+    #menu ul li {
+        padding-left: 2.5rem;
+        text-wrap: nowrap;
+        height: 100%;
+        vertical-align: center;
+    }
+
+    #menu #logoImg {
+        width: 80px;
+        height: 60px;
+    }
+
+    #menu #logo {
+        font-size: 2rem;
+        margin-right: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    #logo p {
+        margin-left: -15px;
+    }
+
+    #meuPerfil img {
+        width: 30px;
+        margin-bottom: -5px;
+        margin-right: -2rem;
+    }
+
+    #meuPerfil img:hover {
+        width: 35px;
+    }
+
+    #left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-row: 2/3;
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    #rigth {
+        grid-row: 3/4;
+        display: flex;
+        align-items: end;
+        margin-bottom: 5rem;
+    }
+
+    #footer {
+        grid-row: 4;
+    }
+
+    #main #dadosLinha {
+        height: 60%;
+    }
+
+    #inputComentario {
+        width: 100%;
+        font-size: 1.8rem;
+        background-size: 30px;
+        
+    }
+
+    #inputComentario::placeholder {
+        font-size: 1.6rem;
+        color: #000;
+        font-family: 'Gotham';
+    }
+
+    #left iframe {
+        width: 30rem;
+        height: 40rem;
+    }
+
+    #linhaProgress {
+        width: 100%;
+    }
+
+    #dadosLinha {
+        font-size: 2.5rem;
+    }
+
+    #dados p {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+}
+
+
+@media (max-width: 1600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #menu {
+        grid-row: 1/2;
+    }
+
+    #left {
+        grid-row: 2/3;
+    }
+
+    #rigth {
+        grid-row: 3/4;
+    }
+}

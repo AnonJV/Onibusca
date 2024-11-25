@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem somos?</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/OniBusca.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/quemSomos.css' %}">
+</head>
+<body>
+    <nav id="menu">
+        <a href="{% url 'home' %}" id="linkBack">
+        <span id="logo">
+            <img src="{% static 'img/OniBusca.svg' %}" alt="logo do site" id="logoImg">
+        <p><span class="green">Oni</span>Busca</p>
+    </a>
+    </span>
+    <ul>
+        <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+        {% if not user.is_authenticated %}
+        <li id="linhas"><a href="{% url 'login' %}">Entrar</a></li>
+        {% endif %}
+    <span id="meuPerfil">
+        {% if user.is_authenticated %}
+        <li><a href="meuPerfil.html">Meu perfil</li>
+        <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+        {% endif %}
+
+    </span>
+    </ul>
+</nav>
+<main id="main">
+    <h1><span class="green">Quem</span> Somos?</h1>
+
+    <div id="texto">
+        <p>Formado por um grupo de alunos do Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, campus Capivari, nós da Orka Shield nos organizamos para criar um projeto que ajudasse não apenas nossa cidade mas sim todos os usuários do Brasil no que diz respeito ao transporte público.</p>
+        <p>Dentre os alunos que participaram do projeto: Jean Camargo Vieira, Rafael Ferrera Dias, Thales Souza Oliveira, Lucas Luis Rosada e Gustavo Almeida Moreira. Cada integrante foi de suma importância para a realização do projeto, destacando-se a atuação na programação como no desenvolvimento do artigo acadêmico.</p>
+        <p>Tudo começou como um Projeto Integrador, mas logo se transformou em uma colaboração compromissada com a comunidade a partir do momento em que entramos em contato com a filosofia de software livre. Decidimos adotar o projeto como open source, logo todos, que assim quiserem, possuem liberdade para ler, estudar, alterar e executar.</p>
+        <p>Esperamos colaborar no alcance de um Brasil tecnológico e interconectado, acatando o termo de cidades inteligentes e trazendo facilidade para todo o povo brasileiro que sofre com o transporte público.</p>
+        <p>Atenciosamente, <br><span class="green" id="orka">Orka</span>.</p>
+    </div>
+</main>
+
+<footer id="footer">
+    <p>&copy; OrkaShield</p>
+</footer>
+
+</body>
+</html>

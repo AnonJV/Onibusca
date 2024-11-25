@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OniBusca</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/OniBusca.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/indexMedia.css' %}">
+
+</head>
+<body>
+    <nav id="menu">
+        <span id="logo">
+            <img src="{% static 'img/logo.png' %}" alt="logo do site">
+        <p><span class="green">Oni</span>Busca</p>
+    </span>
+        <ul>
+            <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="meuPerfil.html">Meu perfil</a></li>
+            <li style="padding-left: 1rem; cursor: pointer;"><a href="meuPerfil.html"><img src="{% static 'img/user.png' %}" alt="perfil" style="height: 30px; width: 30px;"></a></li>
+            {% endif %}
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <main id="main">
+    <div id="left">
+        <h4>Para onde <span class="green">você</span> quer ir?</h4>
+        <p>Descubra com apenas um <span class="green">clique</span> onde está seu ônibus!</p>
+        <a href="linhas.html"><button id="btnVisualizar">Visualizar Linhas</button></a>
+    </div>
+
+    <div id="rigth">
+        <img src="{% static 'img/onibusgreen.png' %}" alt="ônibus verde" id="onibus">
+        <img src="{% static 'img/blob2.png' %}" alt="mancha cinza" id="blob">
+    </div>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; OrkaShield</p>
+    </footer>
+</body>
+</html>

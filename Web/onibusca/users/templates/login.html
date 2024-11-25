@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    {% load static %}
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/OniBusca.svg' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/loginMedia.css' %}" />
+  </head>
+  <body>
+    <a href="{% url 'home' %}" id="linkBack">
+      <span id="logo">
+        <img src="{% static 'img/logo.png' %}" alt="logo do site" />
+        <p><span class="green">Oni</span>Busca</p>
+      </span>
+    </a>
+    <main id="main">
+      <div id="left">
+        <img src="{% static 'img/blob2.png' %}" alt="mancha cinza" id="blob" />
+        <img
+          src="{% static 'img/city bus-rafiki.svg' %}"
+          alt="imagem de um ponto de ônibus"
+          id="onibus"
+        />
+      </div>
+
+      <div id="rigth">
+        <form action="{% url 'login' %}" method="post" id="form">
+          {% csrf_token %}
+          <h3>LOGIN</h3>
+          <div id="inputs">
+            <span class="container-input">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="email@gmail.com"
+                maxlength="255"
+              />
+            </span>
+            <span class="container-input">
+              <label for="senha">Senha</label>
+              <span id="inputPass">
+                <input
+                  type="password"
+                  name="senha"
+                  id="senha"
+                  placeholder="Sua senha"
+                  required
+                />
+                <img
+                  src="{% static 'img/olhoOpen.png' %}"
+                  class="input-icon"
+                  id="showPassword"
+                />
+              </span>
+            </span>
+          </div>
+
+          <span id="trocarSenha">
+            <a href="#">Esqueci minha senha</a>
+          </span>
+          <button type="submit" id="btnCad">Entrar</button>
+          <span id="question">
+            <p>Não tem uma conta?</p>
+            <a href="{% url 'cadastro' %}">Criar conta</a>
+          </span>
+        </form>
+      </div>
+    </main>
+    <footer id="footer">
+      <p>&copy; OrkaShield</p>
+    </footer>
+    <script>
+      let showPassword = document.getElementById("showPassword");
+      let inputSenha = document.getElementById("senha");
+
+      showPassword.addEventListener("click", function () {
+        console.log("entrou na função");
+        if (inputSenha.getAttribute("type") === "password") {
+          inputSenha.setAttribute("type", "text");
+          showPassword.src = "{% static 'img/olhoClose.png' %}";
+        } else {
+          showPassword.src = "{% static 'img/olhoOpen.png' %}";
+          inputSenha.setAttribute("type", "password");
+        }
+      });
+    </script>
+  </body>
+</html>

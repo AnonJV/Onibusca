@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitoramento do veículo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #mapa_da_rota { height: 600px; }
+        .botao {
+            position: absolute;
+            z-index: 1000;
+            background-color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #botaoCentralizar {
+            bottom: 10px;
+            right: 10px;
+        }
+        #botaoSatelite {
+            bottom: 10px;
+            right: 70px; 
+        }
+        #legenda {
+            position: absolute;
+            bottom: 80px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .box {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapa_da_rota"></div>
+
+    <div id="legenda">
+        <div>
+            <span class="box" style="background-color: #003626;"></span> Percurso Percorrido
+        </div>
+        <div>
+            <span class="box" id="cor-segmento"></span> Rota prevista
+        </div>
+    </div>
+
+    <button id="botaoCentralizar" class="botao">
+        <img src="https://i.postimg.cc/yxDt6VcT/cent.png" alt="Centralizar" width="40" height="40">
+    </button>
+    
+    <button id="botaoSatelite" class="botao">
+        <img src="https://i.postimg.cc/bwpDKdQk/satelite.png" alt="Satélite" width="40" height="40">
+    </button>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        let mapa;
+        let marcadorVeiculo;
+        let linha_percurso_trajeto_percorrido;
+        let linha_segmento_rota;
+        let marcadorUsuario; 
+        let ultimoPonto = null; 
+        let isSatellite = false;
+
+        function inicializaMapa(localizacaoAtual) {
+            mapa = new L.Map('mapa_da_rota', {
+                center: localizacaoAtual,
+                zoom: 18
+            });
+
+            var normal = L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    'attribution': 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+                }).addTo(mapa);
+
+            var satelite = L.tileLayer(
+                'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                    'attribution': 'Map data © <a href="http://google.com">Google</a>'
+                });
+
+            mapa.sateliteLayer = satelite;
+
+            document.getElementById('botaoCentralizar').onclick = function() {
+                if (marcadorVeiculo) {
+                    mapa.setView(marcadorVeiculo.getLatLng(), 18); 
+                }
+                if (marcadorUsuario) {
+                    mapa.setView(marcadorUsuario.getLatLng(), 18); 
+                }
+            };
+
+            document.getElementById('botaoSatelite').onclick = function() {
+                if (mapa.hasLayer(satelite)) {
+                    mapa.removeLayer(satelite);
+                    mapa.addLayer(normal); 
+                    isSatellite = false; 
+                    if (linha_segmento_rota) {
+                        linha_segmento_rota.setStyle({ color: '#3e5752' });
+                    }
+                } else {
+                    mapa.removeLayer(normal);
+                    mapa.addLayer(satelite); 
+                    isSatellite = true;
+                    if (linha_segmento_rota) {
+                        linha_segmento_rota.setStyle({ color: '#ffffff' });
+                    }
+                }
+                atualizaCorLegenda();
+            };
+        }
+
+        function moveAnimado(marcador, inicio, fim, duracao) {
+            const deltaLat = fim[0] - inicio[0];
+            const deltaLng = fim[1] - inicio[1];
+            const frames = Math.ceil(duracao / 16); 
+            let frameAtual = 0;
+
+            function animar() {
+                if (frameAtual <= frames) {
+                    const progress = frameAtual / frames;
+                    const lat = inicio[0] + deltaLat * progress;
+                    const lng = inicio[1] + deltaLng * progress;
+                    marcador.setLatLng([lat, lng]);
+                    frameAtual++;
+                    requestAnimationFrame(animar);
+                }
+            }
+
+            animar();
+        }
+
+        function atualizaMapa() {
+            fetch('/dados')
+                .then(response => response.json())
+                .then(dados => {
+                    const localizacaoAtual = dados.coordenada_atual;
+                    const percursoAjustado = dados.percurso_ajustado;
+                    const segmentoRota = dados.segmento_rota;
+
+                    if (!mapa) {
+                        inicializaMapa(localizacaoAtual);
+                        obterLocalizacaoUsuario(); 
+                    }
+
+                    if (marcadorVeiculo) {
+                        if (ultimoPonto) {
+                            moveAnimado(marcadorVeiculo, ultimoPonto, localizacaoAtual, 2500); 
+                        } else {
+                            marcadorVeiculo.setLatLng(localizacaoAtual);
+                        }
+                    } else {
+                        const iconeVeiculo = L.icon({
+                            iconUrl: 'https://i.postimg.cc/HWVhT06s/bus.png',
+                            iconSize: [50, 50],
+                            iconAnchor: [25, 25],
+                            popupAnchor: [0, -25],
+                        });
+                        marcadorVeiculo = L.marker(localizacaoAtual, { icon: iconeVeiculo }).addTo(mapa)
+                            .bindPopup('Aqui está o veículo!')
+                            .openPopup();
+                    }
+
+                    if (linha_segmento_rota) {
+                        mapa.removeLayer(linha_segmento_rota);
+                    }
+
+                    linha_segmento_rota = L.polyline(segmentoRota, {
+                        color: isSatellite ? '#ffffff' : '#3e5752',
+                        weight: 5,
+                        dashArray: '5,10'
+                    }).addTo(mapa);
+
+                    if (linha_percurso_trajeto_percorrido) {
+                        mapa.removeLayer(linha_percurso_trajeto_percorrido);
+                    }
+
+                    linha_percurso_trajeto_percorrido = L.polyline(percursoAjustado, {
+                        color: '#003626',
+                        weight: 9,
+                    }).addTo(mapa);
+
+                    ultimoPonto = localizacaoAtual; 
+
+                    atualizaCorLegenda();
+                })
+                .catch(erro => {
+                    console.error('API decidiu tirar um cochilo', erro);
+                });
+        }
+
+        function obterLocalizacaoUsuario() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((posicao) => {
+                    const { latitude, longitude } = posicao.coords;
+
+                    const iconeUsuario = L.icon({
+                        iconUrl: 'https://i.postimg.cc/NMspYx18/person-1.png',
+                        iconSize: [30, 30], 
+                        iconAnchor: [15, 30], 
+                        popupAnchor: [0, -25],
+                    });
+
+                    marcadorUsuario = L.marker([latitude, longitude], { icon: iconeUsuario }).addTo(mapa)
+                        .bindPopup('Você está aqui!')
+                        .openPopup();
+
+                }, (erro) => {
+                    console.error('Erro ao obter localização do usuário:', erro);
+                });
+            } else {
+                console.error('Geolocalização não é suportada por este navegador.');
+            }
+        }
+
+        function atualizaCorLegenda() {
+            const corSegmento = isSatellite ? '#ffffff' : '#3e5752';
+            document.getElementById('cor-segmento').style.backgroundColor = corSegmento;
+        }
+
+        atualizaMapa();
+        setInterval(() => {
+            atualizaMapa();
+        }, 15000);
+    </script>
+</body>
+</html>
