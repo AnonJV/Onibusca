@@ -5,7 +5,7 @@
     <title>Monitoramento do veículo</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;900&display=swap');
         body{
             font-family: 'Poppins', sans-serif;
         }
@@ -66,9 +66,8 @@
     </button>
 
     <button id="botaoRotaCompleta" class="botao" style="bottom: 10px; right: 130px;">
-    <img src="https://i.postimg.cc/tTCrxftM/1604243.png" alt="Rota Completa" width="40" height="40">
-</button>
-
+        <img src="https://i.postimg.cc/tTCrxftM/1604243.png" alt="Rota Completa" width="40" height="40">
+    </button>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -79,6 +78,7 @@
         let marcadorUsuario; 
         let ultimoPonto = null; 
         let isSatellite = false;
+        let animacaoEmAndamento = false;
 
         function inicializaMapa(localizacaoAtual) {
             mapa = new L.Map('mapa_da_rota', {
@@ -127,30 +127,47 @@
             };
         }
 
-        function moveAnimado(marcador, inicio, fim, duracao) {
-            const deltaLat = fim[0] - inicio[0];
-            const deltaLng = fim[1] - inicio[1];
-            const frames = Math.ceil(duracao / 16); 
-            let frameAtual = 0;
+        function moveAnimado(marcador, rota, duracaoTotal) {
+            if (animacaoEmAndamento) return;
+            animacaoEmAndamento = true;
+
+            let coordenadas = rota;
+            let totalPontos = coordenadas.length;
+            let indiceAtual = 0;
 
             function animar() {
-                if (frameAtual <= frames) {
-                    const progress = frameAtual / frames;
-                    const lat = inicio[0] + deltaLat * progress;
-                    const lng = inicio[1] + deltaLng * progress;
-                    marcador.setLatLng([lat, lng]);
-                    frameAtual++;
-                    requestAnimationFrame(animar);
+                if (indiceAtual < totalPontos) {
+                    marcador.setLatLng(coordenadas[indiceAtual]);
+                    indiceAtual++;
+                    setTimeout(animar, duracaoTotal / totalPontos);
+                } else {
+                    animacaoEmAndamento = false;
                 }
             }
 
             animar();
         }
 
+        function obterRotaEntrePontos(pontoInicial, pontoFinal) {
+            return new Promise((resolve, reject) => {
+                const coordInicio = [pontoInicial[1], pontoInicial[0]].join(',');
+                const coordFim = [pontoFinal[1], pontoFinal[0]].join(',');
+                const url = `http://router.project-osrm.org/route/v1/driving/${coordInicio};${coordFim}?overview=full&geometries=geojson`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const coordinates = data.routes[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+                        resolve(coordinates);
+                    })
+                    .catch(error => reject(error));
+            });
+        }
+
         function atualizaMapa() {
             fetch('/dados')
                 .then(response => response.json())
-                .then(dados => {
+                .then(async dados => {
                     const localizacaoAtual = dados.coordenada_atual;
                     const percursoAjustado = dados.percurso_ajustado;
                     const segmentoRota = dados.segmento_rota;
@@ -162,7 +179,13 @@
 
                     if (marcadorVeiculo) {
                         if (ultimoPonto) {
-                            moveAnimado(marcadorVeiculo, ultimoPonto, localizacaoAtual, 2500); 
+                            try {
+                                const rota = await obterRotaEntrePontos(ultimoPonto, localizacaoAtual);
+                                moveAnimado(marcadorVeiculo, rota, 15000); 
+                            } catch (error) {
+                                console.error('Erro ao obter rota para animação:', error);
+                                marcadorVeiculo.setLatLng(localizacaoAtual);
+                            }
                         } else {
                             marcadorVeiculo.setLatLng(localizacaoAtual);
                         }
