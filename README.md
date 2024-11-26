@@ -74,4 +74,4 @@ Abaixo estão os fundadores do projeto:
 
 ### :checkered_flag: `Timeline`
 
-![Alt](https://repobeats.axiom.co/api/embed/cd637f45a05f68200b0094d4694a5d7f4b00eaa2.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/ea3362e39a6646f3efff8fce05383b38b72bebda.svg "Repobeats analytics image")
