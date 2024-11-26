@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # A PORRA dos meus aplicativos
     'staticPages',
     'users',
+    'mapLines',
 
     # Padrão do Sistema
     'django.contrib.admin',

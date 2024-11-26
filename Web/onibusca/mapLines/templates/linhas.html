@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="shortcut icon" href="images/OniBusca.svg" type="image/x-icon">
-    <link rel="stylesheet" href="css/linhas.css">
-    <link rel="stylesheet" href="css/linhasMedia.css">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>linha</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/OniBusca.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/linhas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/linhasMedia.css' %}">
+    <meta charset="UTF-8">
 </head>
 <body>
 
         <nav id="menu">
-            <a href="index.html" id="linkBack">
+            <a href="{% url 'home' %}" id="linkBack">
             <span id="logo">
-                <img src="images/OniBusca.svg" alt="logo do site" id="logoImg">
+                <img src="{% static 'img/OniBusca.svg' %}" alt="logo do site" id="logoImg">
             <p><span class="green">Oni</span>Busca</p>
         </a>
         </span>
         <ul>
-            <li><a href="suporte.html">Ajuda</a></li>
-        <span id="meuPerfil">
-            <li><a href="meuPerfil.html">Meu perfil</li>
-            <li><img src="images/user.png" alt="perfil"></a></li>
-        </span>
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+            {% if not user.is_authenticated %}
+            <li id="linhas"><a href="{% url 'login' %}">Entrar</a></li>
+            {% else %}
+            <span id="meuPerfil">
+                <li><a href="meuPerfil.html">Meu perfil</li>
+                <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+            </span>
+            {% endif %}
         </ul>
     </nav>
 
     <main id="main">
         <div id="left">
-            <img id="woman" src="images/woman.svg" alt="">
+            <img id="woman" src="{% static 'img/woman.svg' %}" alt="">
         </div>
         <div id="rigth">        
             <div id="tableLinhas">

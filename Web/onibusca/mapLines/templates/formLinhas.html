@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formLinhas.css">
     <title>Cadastrar Linha</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/formLinhas.css' %}">
 </head>
 
 <body>
@@ -28,10 +29,11 @@
     </nav>
     <main>
         <div id="img">
-            <img src="include_linemap.svg" alt="onibus">
+            <img src="{% static 'img/include_linemap.svg' %}" alt="onibus">
         </div>
         <div id="form-div">
-            <form action="">
+            <form action="{% url 'formLinhas' %}" method="POST" id="form">
+                {% csrf_token %}
                 <span>
                     <label for="linha">Linha</label>
                     <input type="text" name="linha" id="linha" required>

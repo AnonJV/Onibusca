@@ -18,11 +18,14 @@
     </span>
         <ul>
             <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'formLinhas' %}">Linhas</a></li>
+            {% endif %}
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if user.is_authenticated %}
             <li><a href="meuPerfil.html">Meu perfil</a></li>
             <li style="padding-left: 1rem; cursor: pointer;"><a href="meuPerfil.html"><img src="{% static 'img/user.png' %}" alt="perfil" style="height: 30px; width: 30px;"></a></li>
             {% endif %}
-            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if not user.is_authenticated %}
             <li><a href="{% url 'login' %}">Entrar</a></li>
             {% endif %}

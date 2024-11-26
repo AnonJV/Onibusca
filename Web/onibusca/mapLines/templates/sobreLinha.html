@@ -5,26 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quem somos?</title>
-    <link rel="stylesheet" href="css/sobreLinha.css">
-    <link rel="stylesheet" href="css/sobreLinhaMedia.css">
-    <link rel="shortcut icon" href="images/OniBusca.svg" type="image/x-icon">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/sobreLinha.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sobreLinhaMedia.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/OniBusca.svg' %}" type="image/x-icon">
 </head>
 
 <body>
     <nav id="menu">
-        <a href="index.html" id="linkBack">
+        <a href="{% url 'home' %}" id="linkBack">
             <span id="logo">
-                <img src="images/logo.png" alt="logo do site" id="logoImg">
+                <img src="{% static 'img/logo.png' %}" alt="logo do site" id="logoImg">
                 <p><span class="green">Oni</span>Busca</p>
         </a>
         </span>
         <ul>
-            <li id="linhas"><a href="linhas.html">Visualizar Linhas</a></li>
-            <li><a href="suporte.html">Ajuda</a></li>
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+            {% if not user.is_authenticated %}
+            <li id="linhas"><a href="{% url 'login' %}">Entrar</a></li>
+            {% else %}
             <span id="meuPerfil">
                 <li><a href="meuPerfil.html">Meu perfil</li>
-                <li><img src="images/user.png" alt="perfil"></a></li>
+                <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
             </span>
+            {% endif %}
         </ul>
     </nav>
     <main id="main">
