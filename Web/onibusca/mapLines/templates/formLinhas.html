@@ -17,11 +17,11 @@
         </span>
         <ul>
             <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if user.is_authenticated %}
             <li><a href="meuPerfil.html">Meu perfil</a></li>
-            <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+            <li style="padding-left: 1rem; cursor: pointer;"><img src="{% static 'img/user.png' %}" alt="perfil" style="width: 30px; height: 30px;"></a></li>
             {% endif %}
-            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if not user.is_authenticated %}
             <li><a href="{% url 'login' %}">Entrar</a></li>
             {% endif %}
