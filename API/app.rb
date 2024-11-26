@@ -162,6 +162,19 @@ def encontra_indice_ponto_mais_proximo(coordenadas_rota, coordenada_atual)
   indice_mais_proximo
 end
 
+def map_match(coordinate)
+  coordinates_str = coordinate.reverse.join(',')
+  uri = URI("http://router.project-osrm.org/nearest/v1/driving/#{coordinates_str}?number=1")
+  response = Net::HTTP.get_response(uri)
+  if response.is_a?(Net::HTTPSuccess)
+    json_data = JSON.parse(response.body)
+    matched_coordinate = json_data.dig("waypoints", 0, "location")
+    matched_coordinate.reverse if matched_coordinate
+  else
+    coordinate
+  end
+end
+
 get '/' do
   erb :index
 end
@@ -175,6 +188,9 @@ get '/dados' do
   ultima_parada = dados_filtrados.max_by { |entry| DateTime.strptime(entry['TS_DATA_HORA2'], '%d/%m/%Y %H:%M:%S') }
   coordenada_atual_str = ultima_parada['COORDENADA']
   coordenada_atual = coordenada_atual_str.split(',').map(&:strip).map(&:to_f)
+
+  coordenada_atual = map_match(coordenada_atual)
+
   rota_completa = carrega_rota_completa
   indice_mais_proximo = encontra_indice_ponto_mais_proximo(rota_completa, coordenada_atual)
   historico_coordenadas = carrega_o_historico_das_paradas
