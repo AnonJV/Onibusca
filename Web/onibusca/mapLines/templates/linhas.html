@@ -44,24 +44,18 @@
                             <td>PARTIDA</td>
                             <td>CHEGADA</td>
                         </tr>
+                        {% for linha in linhas %}
                         <tr>
-                            <td>Centro - IFSP</td>
-                            <td>7:00h</td>
-                            <td>8:00h</td>
-                            <td class="plus"><a href="sobreLinha.html"><button><img src="images/plus.png" alt="expandir" class="plus"></button></a></td>
+                            <td>{{ linha.linha }}</td>
+                            <td>{{ linha.inicio|time:"H:i" }}</td>
+                            <td>{{ linha.termino|time:"H:i" }}</td>
+                            <td class="plus"><a href="sobreLinha.html"><button><img src="{% static 'img/plus.png' %}" alt="expandir" class="plus"></button></a></td>
                         </tr>
+                        {% empty %}
                         <tr>
-                            <td>IFSP - Centro</td>
-                            <td>17:10h</td>
-                            <td>18:10h</td>
-                            <td class="plus"><a href="sobreLinha.html"><button><img src="images/plus.png" alt="expandir" class="plus"></button></a></td>
+                            <td colspan="4">Nenhuma linha encontrada</td>
                         </tr>
-                        <tr>
-                            <td>Bairro - Centro</td>
-                            <td>6:00h</td>
-                            <td>6:40h</td>
-                            <td class="plus"><a href="sobreLinha.html"><button><img src="images/plus.png" alt="expandir" class="plus"></button></a></td>
-                        </tr>
+                        {% endfor %}
                         <tr>
                             <td colspan="5"><button id="btnMore">CARREGAR MAIS</button></td>
                         </tr>
