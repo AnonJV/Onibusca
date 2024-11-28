@@ -43,9 +43,48 @@
             margin-right: 5px;
             border: 2px solid #000;
         }
+
+        #modalAPI {
+            display: none; 
+            position: fixed;
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #modalContent {
+            background-color: red;
+            color: white;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            text-align: center;
+            border-radius: 10px;
+        }
+        #fecharModal {
+            background-color: white;
+            color: red;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
+    <!-- Modal -->
+    <div id="modalAPI">
+        <div id="modalContent">
+            <h2>A API não está enviando dados</h2>
+            <button id="fecharModal">Fechar</button>
+        </div>
+    </div>
+
     <div id="mapa_da_rota"></div>
 
     <div id="legenda">
@@ -81,6 +120,10 @@
         let animacaoEmAndamento = false;
 
         function inicializaMapa(localizacaoAtual) {
+            if (!localizacaoAtual) {
+                localizacaoAtual = [-23.55052, -46.63331]; 
+            }
+
             mapa = new L.Map('mapa_da_rota', {
                 center: localizacaoAtual,
                 zoom: 18
@@ -168,6 +211,16 @@
             fetch('/dados')
                 .then(response => response.json())
                 .then(async dados => {
+                    if (dados.erro) {
+                        document.getElementById('modalAPI').style.display = 'block';
+                        if (!mapa) {
+                            inicializaMapa(); // Inicializa o mapa com localização padrão
+                        }
+                        return;
+                    } else {
+                        document.getElementById('modalAPI').style.display = 'none';
+                    }
+
                     const localizacaoAtual = dados.coordenada_atual;
                     const percursoAjustado = dados.percurso_ajustado;
                     const segmentoRota = dados.segmento_rota;
@@ -226,8 +279,16 @@
                 })
                 .catch(erro => {
                     console.error('API decidiu tirar um cochilo', erro);
+                    document.getElementById('modalAPI').style.display = 'block';
+                    if (!mapa) {
+                        inicializaMapa(); 
+                    }
                 });
         }
+
+        document.getElementById('fecharModal').onclick = function() {
+            document.getElementById('modalAPI').style.display = 'none';
+        };
 
         function obterLocalizacaoUsuario() {
             if (navigator.geolocation) {

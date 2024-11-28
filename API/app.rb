@@ -59,6 +59,8 @@ def faz_um_get_maroto_na_api
   else
     {}
   end
+rescue StandardError
+  {}
 end
 
 def salva_o_historico_das_paradas(historico_coordenadas)
@@ -219,11 +221,44 @@ get '/dados' do
     segmento_rota: segmento_rota,
     percurso_ajustado: percurso_ajustado
   }.to_json
+rescue StandardError
+  { erro: 'Nenhum dado disponível' }.to_json
 end
 
 def limitter(rota_completa, indice_atual, quantidade_pontos)
   indice_final = [indice_atual + quantidade_pontos, rota_completa.length - 1].min
   rota_completa[indice_atual..indice_final]
+end
+
+get '/date' do
+  content_type :json
+  dados = faz_um_get_maroto_na_api
+
+  unless dados.is_a?(Hash) && dados.key?('TRB_PON_EXEC') && dados['TRB_PON_EXEC'].is_a?(Array) && !dados['TRB_PON_EXEC'].empty?
+    return { erro: 'Nenhum dado disponível' }.to_json
+  end
+
+  dados_filtrados = dados['TRB_PON_EXEC'].map do |entry|
+    {
+      "APELIDO" => entry["APELIDO"],
+      "CARRO" => entry["CARRO"],
+      "CLIENTE" => entry["CLIENTE"],
+      "CODIGO_CONDUTOR" => entry["CODIGO_CONDUTOR"],
+      "COORDENADA" => entry["COORDENADA"],
+      "ID" => entry["ID"],
+      "ITINERARIO" => entry["ITINERARIO"],
+      "LINHA" => entry["LINHA"],
+      "TS_DATA_HORA2" => entry["TS_DATA_HORA2"],
+      "VEICULOPLACA" => entry["VEICULOPLACA"],
+      "VELOCIDADE" => entry["VELOCIDADE"]
+    }
+  end
+
+  File.open('data_support.json', 'w') do |file|
+    file.write(JSON.pretty_generate({ 'TRB_PON_EXEC' => dados_filtrados }))
+  end
+
+  { 'TRB_PON_EXEC' => dados_filtrados }.to_json
 end
 
 if __FILE__ == $0
