@@ -17,9 +17,9 @@
         <p><span class="green">Oni</span>Busca</p>
     </span>
         <ul>
-            <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
             {% if user.is_superuser %}
             <li><a href="{% url 'formLinhas' %}">Linhas</a></li>
+            <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
             {% endif %}
             <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if user.is_authenticated %}
@@ -45,7 +45,7 @@
     </main>
 
     <footer id="footer">
-        <p>&copy; OrkaShield</p>
+        <p>&copy; Onibusca</p>
     </footer>
 </body>
 </html>
