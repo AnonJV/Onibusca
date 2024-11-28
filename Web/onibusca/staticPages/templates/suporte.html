@@ -24,8 +24,7 @@
         {% endif %}
     <span id="meuPerfil">
         {% if user.is_authenticated %}
-        <li><a href="meuPerfil.html">Meu perfil</li>
-        <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+        <li><a href="meuPerfil.html" class="profileIcon"><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
         {% endif %}
     </span>
     </ul>
@@ -76,13 +75,12 @@
       <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-              Contato
+              Como voltar para a tela inicial
             </button>
         </h2>
         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <p>Envie um email para</p>
-                <a href="mailto:orkashield@gmail.com">orkashield@gmail.com</a>
+                Para voltar para a tela inicial, basta clicar na logo do projeto
             </div>
         </div>
     </div>

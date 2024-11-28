@@ -11,16 +11,17 @@
 
 <body>
     <nav id="menu">
-        <span id="logo">
-            <img src="{% static 'img/logo.png' %}" alt="logo do site">
-            <p><span class="green">Oni</span>Busca</p>
-        </span>
+        <a href="{% url 'home' %}" style="text-decoration: none; color: #151018;">
+            <span id="logo">
+                <img src="{% static 'img/logo.png' %}" alt="logo do site">
+                <p><span class="green">Oni</span>Busca</p>
+            </span>
+        </a>
         <ul>
             <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
             <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if user.is_authenticated %}
-            <li><a href="meuPerfil.html">Meu perfil</a></li>
-            <li style="padding-left: 1rem; cursor: pointer;"><img src="{% static 'img/user.png' %}" alt="perfil" style="width: 30px; height: 30px;"></a></li>
+            <li><a href="meuPerfil.html" class="profileIcon"><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
             {% endif %}
             {% if not user.is_authenticated %}
             <li><a href="{% url 'login' %}">Entrar</a></li>

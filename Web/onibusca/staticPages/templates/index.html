@@ -23,8 +23,7 @@
             {% endif %}
             <li><a href="{% url 'suporte' %}">Ajuda</a></li>
             {% if user.is_authenticated %}
-            <li><a href="meuPerfil.html">Meu perfil</a></li>
-            <li style="padding-left: 1rem; cursor: pointer;"><a href="meuPerfil.html"><img src="{% static 'img/user.png' %}" alt="perfil" style="height: 30px; width: 30px;"></a></li>
+            <li><a href="meuPerfil.html" class="profileIcon"><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
             {% endif %}
             {% if not user.is_authenticated %}
             <li><a href="{% url 'login' %}">Entrar</a></li>
@@ -36,7 +35,7 @@
     <div id="left">
         <h4>Para onde <span class="green">você</span> quer ir?</h4>
         <p>Descubra com apenas um <span class="green">clique</span> onde está seu ônibus!</p>
-        <a href="{% url 'linhas' %}"><button id="btnVisualizar">Visualizar Linhas</button></a>
+        <a href="{% url 'linhas' %}"><button id="btnVisualizar"><b>Visualizar Linhas</b></button></a>
     </div>
 
     <div id="rigth">

@@ -38,27 +38,9 @@ body {
 #menu ul {
     display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     list-style: none;
     margin-right: 8rem;
-}
-
-.profileIcon {
-    cursor: pointer;
-    align-self: center;
-    justify-self: center;
-    transition: .3s;
-}
-
-.profileIcon img {
-    width: 50px !important;
-    height: 50px !important;
-}
-
-.profileIcon img:hover {
-    transform: scale(1.1);
-    transition: .3s;
 }
 
 #menu ul li {
@@ -98,7 +80,6 @@ body {
     margin-left: -20px;
 }
 
-
 main {
     display: flex;
     flex: 1;
@@ -116,7 +97,7 @@ main {
 }
 
 #img img {
-    width: 75%;
+    width: 70%;
 }
 
 #form-div {
@@ -132,7 +113,7 @@ main {
 form {
     display: flex;
     width: 80%;
-    height: 60%;
+    height: max-content;
     flex-direction: column;
     align-items: center;
     background-color: #e6e2e2;
@@ -146,6 +127,7 @@ form span {
     flex-direction: column;
     justify-content: start;
     width: 100%;
+    margin: .5rem 0;
 }
 
 label {
@@ -156,17 +138,16 @@ label {
     font-size: 1.8rem;
     padding-bottom: 0.5rem;
     font-family: "Gotham";
-  }
+}
 
 input {
     outline: none;
-    width: 100%;
+    width: 80%;
     border: none;
     border-radius: 5px 10px 10px 5px;
-    margin-bottom: 15px;
     padding: 1rem;
     font-size: 1.6rem;
-  }
+}
 
 #save {
     outline: none;
@@ -179,11 +160,66 @@ input {
     transition: 0.3s;
     font-weight: lighter;
     width: 20%;
-  }
+}
 
 #save:hover {
     transition: 0.3s;
     transform: scale(1.05);
     box-shadow: #3c3d3c 2px 2px 4px;
     font-size: 1.7rem;
-  }
+}
+
+#addCity {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+#adicionarCidade {
+    background-color: #fff;
+    border: 2px solid #151018;
+    padding: .5rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    color: #151018;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1.6rem;
+    transition: .3s;
+}
+
+#adicionarCidade:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+.spanLinha {
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    margin: 1rem 0;
+}
+
+.spanLinha input {
+    justify-self: center;
+    margin: auto 0;
+}
+
+.btnExcluir {
+    font-size: 1.6rem;
+    border: none;
+    color: #fff;
+    padding: .5rem 1rem;
+    font-weight: 600;
+    width: min-content;
+    margin: 0 auto;
+    border-radius: .6rem;
+    background-color: red;
+}
+
+.btnExcluir:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}

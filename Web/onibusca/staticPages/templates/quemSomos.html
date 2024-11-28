@@ -23,8 +23,7 @@
         {% endif %}
     <span id="meuPerfil">
         {% if user.is_authenticated %}
-        <li><a href="meuPerfil.html">Meu perfil</li>
-        <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+        <li><a href="meuPerfil.html" class="profileIcon"><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
         {% endif %}
 
     </span>

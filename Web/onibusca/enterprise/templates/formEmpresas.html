@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formEmpresas.css">
+    <title>Cadastrar empresa</title>
+</head>
+
+<body>
+    <nav id="menu">
+        <span id="logo">
+            <img src="{% static 'img/logo.png' %}" alt="logo do site">
+            <p><span class="green">Oni</span>Busca</p>
+        </span>
+        <ul>
+            <li><a href="{% url 'quem_somos' %}">Quem somos?</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="meuPerfil.html">Meu perfil</a></li>
+            <li><img src="{% static 'img/user.png' %}" alt="perfil"></a></li>
+            {% endif %}
+            <li><a href="{% url 'suporte' %}">Ajuda</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        <div id="img">
+            <img src="empresa.png" alt="onibus">
+        </div>
+        <div id="form-div">
+            <form action="">
+                <span>
+                    <label for="id">CNPJ</label>
+                    <input type="text" name="cnpj" id="cnpj" required>
+                </span>
+                <span>
+                    <label for="linha">Nome</label>
+                    <input type="text" name="nomeEmpresa" id="nomeEmpresa" required>
+                </span>
+                <span>
+                    <label for="horaInicial">Email</label>
+                    <input type="email" name="emailEmpresa" id="emailEmpresa" required>
+                </span>
+                <span>
+                    <div id="addCity">
+                        <label for="horaTermino">Cidades</label>
+                    </div>
+                    <div id="camposCidade">
+                        <input type="text" id="cidade0" name="cidade0" placeholder="1ª cidade" required>
+                    </div>
+                </span>
+                <button id="adicionarCidade">Adicionar</button>
+                <input type="submit" value="SALVAR" id="save">
+            </form>
+        </div>
+    </main>
+</body>
+<script src="formEmpresas.js"></script>
+
+</html>

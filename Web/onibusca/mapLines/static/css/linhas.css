@@ -44,11 +44,29 @@ body {
 #menu ul {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: end;
     list-style: none;
-    margin-right: 5rem;
+    margin-right: 8rem;
 }
+
+.profileIcon {
+    cursor: pointer;
+    align-self: center;
+    justify-self: center;
+    transition: .3s;
+}
+
+.profileIcon img {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.profileIcon img:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
 #meuPerfil {
     display: flex;
     align-items: center;
@@ -74,7 +92,7 @@ body {
 
 #menu #logoImg {
     margin: 1rem;
-    width: 100px;
+    width: 50px;
     height: 90px;
     justify-content: flex-start;
 }
@@ -109,7 +127,8 @@ body {
 
 #main {
     display: grid;
-    grid-template-columns: 4fr 6fr
+    grid-template-columns: 4fr 6fr;
+    margin-bottom: 1rem;
 }
 
 #left {
@@ -128,47 +147,42 @@ body {
 #tableLinhas {
     display: flex;
     width: 80%;
-    height: 100%;
-    border-radius: 5rem;
+    border-radius: 2rem;
+    padding: 2rem .5rem;
     flex-direction: column;
     color: #fff;
     background-color: #3c554f;
-    box-shadow: 3px 5px 1rem #3c554f;
+    box-shadow: 3px 4px 5px #3c554f;
 }
 
 #tableLinhas h1 {
-    font-size: 5rem;
+    font-size: 2.4rem;
     text-align: center;
-    padding: 4rem 10rem 1rem 10rem;
+    padding: 2rem;
 }
+
 #tableLinhas table {
     width: 100%;
     height: 100%;
     font-size: 1.6rem;
     border-collapse:  separate;
     justify-self: center;
-    padding: 3rem;
+    padding: .5rem;
     align-self: center;
-    border-spacing: .8rem;
 }
 
 #tableHead {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 td {
     border-radius: .5rem;
     text-align: center;
-    white-space: nowrap;
-    width: min-content;
 }
 
-tr {
-    height: .1px;
-}
 
 table tr:nth-child(1) td{
-    border: 1px solid #fff;
+    border: 2px solid #fff;
 }
 
 table tr:nth-child(n + 2) td {
@@ -211,10 +225,10 @@ tr td:last-child {
 
 #btnMore {
     width: 40%;
-    margin: 0 auto;
-    padding: 20px;
-    font-size: 2rem;
-    border-radius: 2.2rem;
+    margin: 4rem auto;
+    padding: 1rem 0.5rem;
+    font-size: 1.6rem;
+    border-radius: 1rem;
     border: none;
     background-color: #151018;
     color: #fff;
@@ -222,13 +236,11 @@ tr td:last-child {
 }
 
 #btnMore:hover {
-    font-size: 2.2rem;
-    background-color: #000;
+    font-size: 1.8rem;
     transition: .3s;
 }
 
-#footer {
-    grid-row: 3;
+#nullReturn {
     text-align: center;
-    color: #3C3D3C;
+    text-decoration: underline;
 }
