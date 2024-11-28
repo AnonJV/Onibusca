@@ -4,6 +4,20 @@ require 'json'
 require 'uri'
 require 'dotenv/load'
 require 'date'
+require 'rack/cors'
+
+before do
+  headers 'X-Frame-Options' => 'ALLOW-FROM http://127.0.0.1:8000'
+end
+
+use Rack::Cors do
+  allow do
+    origins '*' 
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :options]
+  end
+end
 
 PONTO_PARTIDA = ENV['COORDENADA_INICIAL'].split(',').map(&:to_f)
 PONTO_CHEGADA = ENV['COORDENADA_FINAL'].split(',').map(&:to_f)
