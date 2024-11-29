@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formEmpresas.css">
     <title>Cadastrar empresa</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/formEmpresas.css' %}">
 </head>
 
 <body>
@@ -28,7 +29,7 @@
     </nav>
     <main>
         <div id="img">
-            <img src="empresa.png" alt="onibus">
+            <img src="{% static 'img/empresa.png' %}" alt="onibus">
         </div>
         <div id="form-div">
             <form action="">
@@ -44,20 +45,8 @@
                     <label for="horaInicial">Email</label>
                     <input type="email" name="emailEmpresa" id="emailEmpresa" required>
                 </span>
-                <span>
-                    <div id="addCity">
-                        <label for="horaTermino">Cidades</label>
-                    </div>
-                    <div id="camposCidade">
-                        <input type="text" id="cidade0" name="cidade0" placeholder="1ª cidade" required>
-                    </div>
-                </span>
-                <button id="adicionarCidade">Adicionar</button>
-                <input type="submit" value="SALVAR" id="save">
             </form>
         </div>
     </main>
 </body>
-<script src="formEmpresas.js"></script>
-
 </html>

@@ -75,6 +75,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, 'Login realizado com sucesso!')
             return redirect('home')
         else:
             messages.error(request, 'Email ou senha inválidos')

@@ -75,10 +75,29 @@
         </form>
       </div>
     </main>
+
+    {% if messages %}
+    <div id="messages-container" style="display: none;">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
     <footer id="footer">
       <p>&copy; OrkaShield</p>
     </footer>
     <script>
+      window.onload = function() {
+        const messagesContainer = document.getElementById('messages-container');
+        if (messagesContainer) {
+          const messages = messagesContainer.innerHTML.trim();
+          if (messages) {
+            alert(messages);
+          }
+        }
+      }
+
       let showPassword = document.getElementById("showPassword");
       let inputSenha = document.getElementById("senha");
 
