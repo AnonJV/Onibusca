@@ -189,3 +189,122 @@ def verifica_email(first_name, user_email):
     s.quit()
 
     return codigo_verificacao
+
+def verifica_email_senha(request):
+    ''' Envio de código caso esqueça senha '''
+
+    if request.method == 'POST':
+        temp_email = request.POST['emailRec']
+        user_data = request.session.get('user_data')
+
+        if temp_email != user_data['email']:
+            messages.error(request, 'Email não cadastrado')
+            return redirect('login')
+        
+        # temp_email é a variável de email agora Gustavo
+
+        first_name = user_data['first_name']
+    
+    def codigo_recuperar_senha():
+        toke_senhan = pyotp.random_base32()
+        tot_senhap = pyotp.TOTP(toke_senhan, digits=6)
+        return tot_senhap.now()
+    
+    # Código principal da verificação
+    codigo_verificao_senha = codigo_recuperar_senha()
+    data_hora_atual = datetime.now()
+    data_formatada = data_hora_atual.strftime('%d de %B ás %H:%M')
+
+    corpo_email = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <style>
+                    body {{
+                        font-size: 50px;
+                        font-family: Arial, sans-serif;
+                        display: flex;
+                        justify-content: center;
+                        text-align: center;
+                        color: #333;
+                }}
+                    .container {{
+                        max-width: 900px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        text-align: center;
+                }}
+                    .logo {{
+                        display: flex;
+                        justify-content: left;
+                        margin-bottom: 20px;
+                }}
+                    .logo img {{
+                        width: 200px;
+                }}
+                    .code {{
+                        font-size: 2em;
+                        font-weight: bold;
+                        margin: 20px 0;
+                }}
+                    .footer {{
+                        font-size: 0.8em;
+                        color: #777;
+                        margin-top: 30px;
+                        text-align: center;
+                }}
+                    .footer a {{
+                        color: #777;
+                        text-decoration: none;
+                }}
+                    .footer .oni {{
+                        width: 100px;
+                }}
+            </style>
+
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.postimg.cc/KvSqcVqc/M-dia.jpg" alt="OniBusca Logo">
+            </div>
+            <h2>Olá, {first_name}</h2>
+            <p>Um pedido de restauração de senha foi <br>
+                enviado para sua conta. Para concluir a <br>
+                recuperação insira o código a seguir: <br>
+            <div class="code">{codigo_verificao_senha}</div>
+            <p>Se você não fez esse pedido, ignore este <br> email.</p>
+            <p>{data_formatada}</p>
+            <div class="footer">
+                <hr>
+                <img class="oni" src="https://i.postimg.cc/KvSqcVqc/M-dia.jpg" alt="OniBusca Logo">
+                <p>&copy; Onibusca. OrkaShield, Capivari, São Paulo</p>
+                <p>Esta mensagem foi enviada para {temp_email} e destina a {first_name}. Não é sua conta? <a href="#">Remova seu email dessa conta</a>.</p>
+            </div>
+        </div>
+
+        </body>
+        </html>
+ 
+        </html>
+        """
+
+    msg = email.message.Message()
+    msg['Subject'] = f'Bem-vindo ao Onibusca, {first_name}!'
+    msg['From'] = f'onibuscanoreply@gmail.com'
+    msg['To'] = temp_email
+    password = 'mcue pfxb ffar ggyl'
+
+    msg.add_header('Content-Type', 'text/html')
+    msg.set_payload(corpo_email)
+
+    s = smtplib.SMTP('smtp.gmail.com:587')
+    s.starttls()
+    s.login(msg['From'], password)
+    s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+    s.quit()
+
+    return codigo_verificao_senha
