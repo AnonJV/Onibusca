@@ -5,7 +5,7 @@
   <img alt="Static Badge" src="https://img.shields.io/badge/Open-Source-%237d15a8">
   <img alt="Static Badge" src="https://img.shields.io/badge/Licen%C3%A7a-GPL-%23e02c2d">
   <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/AnonJV/Onibusca?label=Contribuidores&color=%23100f99">
-  <img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/AnonJV/Onibusca/total?label=Downloads&color=%23f4f30d">
+  <img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/AnonJV/Onibusca/total?color=%23ff7d00">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/AnonJV/Onibusca?label=%C3%9Altimo%20commit&color=rgb(244%2C%20243%2C%2013)">
 </p>
 
