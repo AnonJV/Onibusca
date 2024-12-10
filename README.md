@@ -70,7 +70,7 @@ Entramos em uma parte muito importante do projeto: **as contribuições**. O sof
 
 Abaixo estão os fundadores do projeto: 
 
-![fundadores](https://github.com/AnonJV/Onibusca/blob/main/Images/Fundadores.png)
+![fundadores](https://github.com/AnonJV/Onibusca/blob/main/Images/Atual/Fundadores.png)
 
 ### :checkered_flag: `Timeline`
 
