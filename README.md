@@ -1,4 +1,4 @@
-![Banner Onibusca](https://github.com/AnonJV/Onibusca/blob/main/Images/Banner_OniBusca.png)
+![Banner Onibusca](https://github.com/AnonJV/Onibusca/blob/main/Images/Atual/banner_onibusca.png)
 
 <p align='center'>
   <img alt="Static Badge" src="https://img.shields.io/badge/Projeto-Integrador-%232ac72e">
